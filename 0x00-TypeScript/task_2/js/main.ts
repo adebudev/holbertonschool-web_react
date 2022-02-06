@@ -77,3 +77,19 @@ const executeWork: IexecuteWork = (employee: Director | Teacher) => {
 
 executeWork(createEmployee(300)); // Getting to work
 executeWork(createEmployee(1000)); // Getting to director tasks
+
+type Subjects = 'Math' | 'History';
+
+interface IteachClass {
+  (todayClass: Subjects): string;
+}
+
+const teachClass: IteachClass = (todayClass: Subjects) => {
+  if (todayClass === 'Math') {
+    return 'Teaching Math';
+  }
+  return 'Teaching History';
+};
+
+console.log(teachClass('Math'));
+console.log(teachClass('History'));
