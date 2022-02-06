@@ -7,20 +7,22 @@ interface Teacher {
   [atttr: string]: any;
 }
 
-const teacher1: Teacher = {
-  firstName: 'Adrian',
-  lastName: 'De La Asuncion',
-  yearsOfExperience: 0,
+const teacher3: Teacher = {
+  firstName: 'John',
   fullTimeEmployee: false,
-  location: 'Barranquilla',
-  contract: true,
+  lastName: 'Doe',
+  location: 'London',
+  contract: false,
 };
 
-const teacher2: Teacher = {
-  firstName: 'Yuliana',
-  lastName: 'Giraldo',
-  yearsOfExperience: 22,
+interface Directors extends Teacher {
+  numberOfReports: number
+}
+
+const director1: Directors = {
+  firstName: 'John',
+  lastName: 'Doe',
+  location: 'London',
   fullTimeEmployee: true,
-  location: 'Medellin',
-  contract: true
+  numberOfReports: 17,
 };
