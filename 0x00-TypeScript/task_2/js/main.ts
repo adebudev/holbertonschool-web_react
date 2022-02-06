@@ -48,8 +48,32 @@ const createEmployee: ICreateEmployee = (salary: number | string) => {
     return new Teacher();
   }
   return new Director();
-}
+};
 
 console.log(createEmployee(100).workFromHome());
 console.log(createEmployee(100) instanceof Teacher); // True
 console.log(createEmployee('$500') instanceof Director); // True
+
+interface IisDirector {
+  (employee: Director | Teacher): void;
+}
+
+const isDirector: IisDirector = (employee: Director | Teacher) => {
+  if (employee instanceof Director) {
+    console.log(employee.workDirectorTasks());
+  }
+  if (employee instanceof Teacher) {
+    console.log(employee.workTeacherTasks());
+  }
+};
+
+interface IexecuteWork {
+  (employee: Director | Teacher): void;
+}
+
+const executeWork: IexecuteWork = (employee: Director | Teacher) => {
+  isDirector(employee);
+};
+
+executeWork(createEmployee(300)); // Getting to work
+executeWork(createEmployee(1000)); // Getting to director tasks
