@@ -44,7 +44,7 @@ interface ICreateEmployee {
 }
 
 const createEmployee: ICreateEmployee = (salary: number | string) => {
-  if (salary >= 0 && salary < 500) {
+  if (typeof salary === 'number' && salary < 500) {
     return new Teacher();
   }
   return new Director();
