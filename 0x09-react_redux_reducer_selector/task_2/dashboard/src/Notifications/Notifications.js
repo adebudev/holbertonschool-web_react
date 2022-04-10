@@ -18,30 +18,71 @@ const btnStyle = {
 const imgStyle = {
   width: '20px',
   height: '20px',
-}
+};
 
 class Notifications extends React.PureComponent {
   constructor(props) {
-    super(props)
+    super(props);
   }
 
   render() {
     return (
-      <div className={css(style.notificationContainer, style.mediumNotificationContainer)}>
-        <div className={css(style.menuItem, this.props.displayDrawer ? style.hideElement : '')} id="menuItem" onClick={this.props.handleDisplayDrawer}>Your notifications</div>
-        { this.props.displayDrawer ?
-          (<div className={css(style.notifications, style.mediumNotification)} id="notifications">
-            <button style={btnStyle} aria-label='Close' onClick={this.props.handleHideDrawer} id="closeMenuItem">
-              <img src={close_icon} style={imgStyle}/>
+      <div
+        className={css(
+          style.notificationContainer,
+          style.mediumNotificationContainer
+        )}
+      >
+        <div
+          className={css(
+            style.menuItem,
+            this.props.displayDrawer ? style.hideElement : ''
+          )}
+          id='menuItem'
+          onClick={this.props.handleDisplayDrawer}
+        >
+          Your notifications
+        </div>
+        {this.props.displayDrawer ? (
+          <div
+            className={css(style.notifications, style.mediumNotification)}
+            id='notifications'
+          >
+            <button
+              style={btnStyle}
+              aria-label='Close'
+              onClick={this.props.handleHideDrawer}
+              id='closeMenuItem'
+            >
+              <img src={close_icon} style={imgStyle} />
             </button>
             <p>Here is the list of notifications</p>
             <ul className={css(style.mediumUl)}>
-              {this.props.listNotifications.length === 0 ? (<NotificationItem id={0} value="No new notification for now" type='no-new' markAsRead={this.markAsRead} />) : <></>}
-              {this.props.listNotifications.map((list) => (<NotificationItem id={list.id} key={list.id} type={list.type} value={list.value} html={list.html} markAsRead={this.props.markNotificationAsRead}/>))}
+              {this.props.listNotifications.length === 0 ? (
+                <NotificationItem
+                  id={0}
+                  value='No new notification for now'
+                  type='no-new'
+                  markAsRead={this.markAsRead}
+                />
+              ) : (
+                <></>
+              )}
+              {this.props.listNotifications.map((list) => (
+                <NotificationItem
+                  id={list.id}
+                  key={list.id}
+                  type={list.type}
+                  value={list.value}
+                  html={list.html}
+                  markAsRead={this.props.markNotificationAsRead}
+                />
+              ))}
             </ul>
-          </div>)
-          : <></>
-        }
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     );
   }
@@ -52,40 +93,40 @@ Notifications.propTypes = {
   listNotifications: PropTypes.arrayOf(NotificationItemShape),
   handleDisplayDrawer: PropTypes.func,
   handleHideDrawer: PropTypes.func,
-  markNotificationAsRead: PropTypes.func
+  markNotificationAsRead: PropTypes.func,
 };
 
 Notifications.defaultProps = {
   displayDrawer: false,
   listNotifications: [],
-  handleDisplayDrawer: () => void(0),
-  handleHideDrawer: () => void(0),
-  markNotificationAsRead: () => void(0)
+  handleDisplayDrawer: () => void 0,
+  handleHideDrawer: () => void 0,
+  markNotificationAsRead: () => void 0,
 };
 
 const opacityKeyframes = {
-  'from': {
+  from: {
     opacity: 0.5,
   },
 
-  'to': {
-      opacity: 1,
-  }
+  to: {
+    opacity: 1,
+  },
 };
 
 const translateKeyframes = {
   '0%': {
-      transform: 'translateY(0)',
+    transform: 'translateY(0)',
   },
 
   '50%': {
-      transform: 'translateY(-5px)',
+    transform: 'translateY(-5px)',
   },
   '75%': {
     transform: 'translateY(5px)',
   },
   '100%': {
-      transform: 'translateY(0)',
+    transform: 'translateY(0)',
   },
 };
 
@@ -103,7 +144,7 @@ const style = StyleSheet.create({
       border: 'none',
       width: '100%',
       height: '100%',
-    }
+    },
   },
   menuItem: {
     marginBottom: '10px',
@@ -115,7 +156,7 @@ const style = StyleSheet.create({
       animationName: [opacityKeyframes, translateKeyframes],
       animationDuration: '1s, 0.5s',
       animationIterationCount: '3',
-    }
+    },
   },
   notificationContainer: {
     display: 'flex',
@@ -132,7 +173,7 @@ const style = StyleSheet.create({
       height: '100%',
       zIndex: '6',
       display: 'block !important',
-    }
+    },
   },
   hideElement: {
     display: 'none',
@@ -141,8 +182,8 @@ const style = StyleSheet.create({
     '@media (max-width: 900px)': {
       fontSize: '20px',
       padding: '0',
-    }
-  }
+    },
+  },
 });
 
 export default Notifications;
